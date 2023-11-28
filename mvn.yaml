@@ -21,3 +21,8 @@
       command: mvn package
       args:
         chdir: /home/ansible/maven/my-web
+    - name: install aws s3 install
+      ansible.builtin.apt:
+      name: awscli
+      update_cache: yes
+      state: present
