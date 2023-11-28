@@ -8,12 +8,16 @@
         name: openjdk-11-jdk
         update_cache: yes
         state: present
-    - name: Create Maven Project
-      command: mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=my-web -DarchetypeArtifactId=maven-archetype-webapp -DarchetypeVersion=1.4 -DinteractiveMode=false
-      args:
-        chdir: /home/ansible/mvn
     - name: update and maven
       ansible.builtin.apt:
         name: maven
         update_cache: yes
         state: present
+    - name: Create Maven Project
+      command: mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=my-web -DarchetypeArtifactId=maven-archetype-webapp -DarchetypeVersion=1.4 -DinteractiveMode=false
+      args:
+        chdir: /home/ansible/maven
+    - name: Build WAR File
+      command: mvn package
+      args:
+        chdir: /home/ansible/maven/my-web
