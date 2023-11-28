@@ -26,3 +26,7 @@
       name: awscli
       update_cache: yes
       state: present
+     - name: move war file to s3 bucket
+       ansible.builtin.copy:
+       src: /maven/my-web
+       dist: 
